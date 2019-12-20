@@ -4,9 +4,11 @@
 	<div class="container">
 		<h1>Welcome to YelpCamp</h1>
 		<p>View our hand-picked campgrounds from all over the world</p>
+		<% if(currentUser) { %>
 		<p>
 			<a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
 		</p>
+		<% } %>
 	</div>
 </header>
 
