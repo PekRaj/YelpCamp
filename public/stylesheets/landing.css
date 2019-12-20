@@ -1,0 +1,86 @@
+body {
+	background-color: #000;
+}
+
+#landing-header {
+	z-index: 1;			/* Tuo elementin kaikkien muiden elementtien eteen */
+  	position: relative; /* Sijainnin oltava z-indexiä varten mikä tahansa muu kuin static */
+  	text-align: center;
+	padding-top: 40vh;	/* vh = view height - Suhteellinen %-määrä viewportin koosta */
+}
+
+#landing-header h1 {
+	color: #fff;
+}
+
+.slideshow { 
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;		/* Siirretään vasempaan yläkulmaan kun top ja left arvot ovat 0 */
+	left: 0;
+	z-index: 0;	/* Varmistetaan, että on muiden elementtien takana */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.slideshow li { 
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: cover;		/* Kuva kattaa koko viewportin */
+	background-position: 50% 50%;	/* Kuvan keskittäminen */
+	background-repeat: no-repeat;	/* Varmistetaan, että kuva ei toistu */
+	opacity: 0;					/* Oletuksena kuva näkymätön, animaatio tuo näkville */
+	z-index: 0;					/* Varmistetaan, että kuva pysyy otsikon ja napin taustalla */
+	animation: imageAnimation 50s linear infinite; /* Animaation nimeäminen, kesto (10s/kuva), lineaarinen kesto, loputon kesto */
+}
+
+/* Animaation kuvien asettaminen li -elementteihin */
+.slideshow li:nth-child(1) { 
+  	background-image: url(http://i.imgur.com/K3mPv14.jpg) 
+}
+.slideshow li:nth-child(2) { 
+  	background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+  	animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  	background-image: url(http://i.imgur.com/emvhOnb.jpg);
+  	animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  	background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+  	animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  	background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+  	animation-delay: 40s; 
+}
+
+/* Animaatio */
+@keyframes imageAnimation { 
+	/* Kuvan animaatiolla on 3 vaihetta: feidaa sisään, näytä, feidaa ulos */
+	/* 10sek ajasta 3,3sek kuluu jokaiseen vaiheeseen */
+	0% { 
+		opacity: 0; 
+		animation-timing-function: ease-in;	/* Pehmeämpi siirtymä sisään */
+	}
+	10% {
+		opacity: 1;
+		animation-timing-function: ease-out; /* Pehmeämpi siirtymä pois */
+	}
+	20% {
+		opacity: 1
+	}
+	30% {
+		opacity: 0
+	}
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
